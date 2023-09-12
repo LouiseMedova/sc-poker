@@ -1,0 +1,27 @@
+[package]
+name = "barnett-smart-card-protocol-for-sc"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = { version = "1.0.55", default-features = false }
+ark-ec = "0.4.2"
+ark-ff = "0.4.2"
+ark-marlin = { version = "0.3.0", default-features = false}
+ark-serialize =  "0.4.2"
+blake2 = { version = "0.9", default-features = false }
+
+proof-essentials = {path = "../proof-toolbox/proof-essentials" }
+starknet-curve = { git = "https://github.com/geometryresearch/proof-toolbox.git" }
+gstd = { git = "https://github.com/gear-tech/gear.git", rev = "78dfa07", features = ["debug"] }
+ark-std = { version = "0.4.0", default-features = false}
+thiserror-no-std = "2.0.2"
+
+[dev-dependencies]
+ark-bls12-377 = "0.3.0"
+byte-unit = "4.0.14"
+
+[[example]]
+name = "round"
