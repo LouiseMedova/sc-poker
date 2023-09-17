@@ -17,7 +17,7 @@ proof-essentials = {path = "./proof-toolbox/proof-essentials" }
 starknet-curve = { path = "./proof-toolbox/starknet-curve" }
 thiserror-no-std = "2.0.2"
 barnett-smart-card-protocol-for-sc = {path = "./barnett-protocol-for-sc"}
-ark-bn254 = { git = "https://github.com/arkworks-rs/curves.git" }
+ark-bn254 = "0.3.0"
 ark-bls12-377 = "0.3.0"
 
 [build-dependencies]

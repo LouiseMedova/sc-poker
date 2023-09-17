@@ -214,8 +214,6 @@ extern "C" fn init() {
         .unwrap();
     debug!("GAS {:?}", exec::gas_available());
 
-    // let enc_parameters = G1::deserialize_uncompressed_unchecked(&*init_msg.enc_parameters)
-    //     .unwrap();
     let enc_parameters = G1::deserialize_uncompressed(&*init_msg.enc_parameters)
     .unwrap();
     debug!("GAS {:?}", exec::gas_available());
@@ -224,11 +222,11 @@ extern "C" fn init() {
         .unwrap();
 
         debug!("GAS {:?}", exec::gas_available());
-//    // debug!("HERE {:?}", exec::gas_available());
-//     let enc_parameters = el_gamal::Parameters::<starknet_curve::Projective>::deserialize_uncompressed(&*init_msg.enc_parameters)
-//         .unwrap();
+   // debug!("HERE {:?}", exec::gas_available());
+    let enc_parameters = el_gamal::Parameters::<starknet_curve::Projective>::deserialize_uncompressed(&*init_msg.enc_parameters)
+        .unwrap();
 
-   //    debug!("HERE {:?}", exec::gas_available());
+      debug!("HERE {:?}", exec::gas_available());
 
 
     // let commit_parameters = CommitKey::<starknet_curve::Projective>::deserialize_uncompressed(&*init_msg.commit_parameters)
