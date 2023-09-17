@@ -2,6 +2,7 @@
 use anyhow;
 
 use ark_bn254::{Bn254, Fr, G1Affine, G1Projective as G1, G2Affine, G2Projective as G2};
+use ark_ff::Field;
 use barnett_smart_card_protocol_for_sc::discrete_log_cards;
 use barnett_smart_card_protocol_for_sc::BarnettSmartProtocol;
 use gstd::{msg, prelude::*, debug, exec};
@@ -131,13 +132,13 @@ pub struct Game {
 
 impl Game {
     fn add_player(&mut self, name: String, pk: Vec<u8>, proof_key: Vec<u8>) {
-        let pub_key: PublicKey = starknet_curve::Projective::deserialize_uncompressed(&*pk).unwrap().into();
-        let key_ownership =
-            schnorr_identification::proof::Proof::<starknet_curve::Projective>::deserialize_uncompressed(&*proof_key)
-                .unwrap();
+        // let pub_key: PublicKey = starknet_curve::Projective::deserialize_uncompressed(&*pk).unwrap().into();
+        // let key_ownership =
+        //     schnorr_identification::proof::Proof::<starknet_curve::Projective>::deserialize_uncompressed(&*proof_key)
+        //         .unwrap();
 
-        let player = Player::new(pub_key, key_ownership, name).unwrap();
-        self.players.push(player);
+        // let player = Player::new(pub_key, key_ownership, name).unwrap();
+        // self.players.push(player);
     }
 
     fn shuffle(&mut self, deck: Vec<Vec<u8>>, shuffle_proof: Vec<u8>) {
@@ -207,12 +208,16 @@ extern "C" fn init() {
     let init_msg: InitGame = msg::load().expect("Unable to load the init msg");
 
     debug!("GAS {:?}", exec::gas_available());
-    let enc_parameters = G1::deserialize_uncompressed_unchecked(&*init_msg.enc_parameters)
+    // let enc_parameters = G1::deserialize_uncompressed_unchecked(&*init_msg.enc_parameters)
+    //     .unwrap();
+    let enc_parameters = G1::deserialize_uncompressed(&*init_msg.enc_parameters)
         .unwrap();
     debug!("GAS {:?}", exec::gas_available());
 
-    let enc_parameters = G1::deserialize_uncompressed_unchecked(&*init_msg.enc_parameters)
-        .unwrap();
+    // let enc_parameters = G1::deserialize_uncompressed_unchecked(&*init_msg.enc_parameters)
+    //     .unwrap();
+    let enc_parameters = G1::deserialize_uncompressed(&*init_msg.enc_parameters)
+    .unwrap();
     debug!("GAS {:?}", exec::gas_available());
 
     let enc_parameters = G1::deserialize_uncompressed(&*init_msg.enc_parameters)
